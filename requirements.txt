@@ -6,3 +6,4 @@ tensorflow
 flask
 sqlite3 
 opencv-python
+gunicorn
