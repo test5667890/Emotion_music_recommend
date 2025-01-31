@@ -1,0 +1,275 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../image/bg2.png');
+    background-size: cover; /* Makes the image cover the entire page */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    color: #000000; /* Black text */
+}
+
+/* Title Styling */
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+h1 span {
+    font-size: 20px;
+}
+
+/* Playlist Grid */
+.playlist-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Flexible grid */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    max-height: 500px; /* Fixed height */
+    overflow-y: scroll; /* Enable vertical scrolling */
+    padding-right: 10px; /* Space for the scrollbar */
+}
+
+/* Song Item Styling */
+.song-item {
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Effect with Neon Glow */
+.song-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px rgba(210, 239, 255, 0.082); /* Neon pink glow */
+}
+
+/* Album Cover Styling */
+.album-cover {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.song-info {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.song-title {
+    color: #0a0a0a; /* Adjusted to match theme */
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.song-artist {
+    color: #080808; /* Light text for artist */
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Play Button Styling */
+.play-button {
+    background-color: #a692cb; /* Purple button */
+    border: none;
+    border-radius: 50px;
+    padding: 12px 20px;
+    color: #FFFFFF; /* White text */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    box-shadow: 0px 5px 15px rgba(255, 0, 150, 0.3); /* Neon glow effect */
+}
+
+.play-button:hover {
+    background-color: #c5bfdd; /* Lighter purple on hover */
+    box-shadow: 0px 5px 15px rgba(66, 65, 66, 0.137); /* Stronger glow on hover */
+}
+
+.play-button i {
+    font-size: 20px; /* Play icon size */
+}
+
+
+/* Sidebar Hidden by Default */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: rgba(181, 193, 228, 0.95); /* Glassy blue background */
+    color: #000000;
+    transition: left 0.3s ease;
+    padding-top: 60px;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+.sidebar ul {
+list-style-type: none;
+padding: 0;
+}
+
+.sidebar ul li {
+padding: 15px;
+text-align: center;
+}
+
+.sidebar ul li a {
+color: #030303;;
+text-decoration: none;
+font-size: 18px;
+display: block;
+transition: color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+color: #fff;
+}
+
+/* Hamburger Menu Icon */
+.hamburger {
+position: absolute;
+top: 20px;
+left: 20px;
+z-index: 3;
+cursor: pointer;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+width: 30px;
+height: 20px;
+}
+
+.hamburger div {
+width: 30px;
+height: 3px;
+background-color: #000000;
+transition: all 0.3s ease;
+}
+
+/* Text Styles */
+p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Sidebar Active State */
+.sidebar-active {
+    left: 0;
+}
+
+/* Change Hamburger to 'X' on Click */
+.hamburger-active div:nth-child(1) {
+    transform: rotate(45deg);
+    transform-origin: top left;
+}
+.hamburger-active div:nth-child(2) {
+    opacity: 0;
+}
+.hamburger-active div:nth-child(3) {
+    transform: rotate(-45deg);
+    transform-origin: top left;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+   
+    .content {
+        z-index: 2;
+        position: relative;
+    }
+
+    .playlist-container {
+        display: block; /* Remove grid for mobile */
+        /* max-width: 450px; */
+        /* margin: 0 0; */
+        height: 470px;
+    }
+
+    .song-item {
+        display: flex;
+        flex-direction: row; /* Align items horizontally */
+        align-items: center;
+        box-shadow: none;
+        padding: 20px 20px 0px 20px;
+    }
+
+    .album-cover {
+        width: 180px; /* Smaller album cover */
+        height: 90px;
+        margin-bottom: 0; /* Remove bottom margin */
+        margin-right: 20px; /* Add space between cover and song info */
+    }
+
+    .song-info {
+        margin-top: -20px;
+        width: 100px;
+        display: block;
+        align-items: flex-start; /* Align song info to the left */
+        justify-content: space-between;
+        flex-direction: row;
+    }
+
+    .song-title {
+        font-size: 13px;
+        margin-bottom: 2px; /* Reduce margin */
+    }
+
+    .song-artist {
+        font-size: 12px;
+        margin-bottom: 10px; /* Reduce margin */
+    }
+
+    .play-button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .sidebar {
+        width: 200px;
+    }    
+
+    .hamburger {
+        top: 45px;
+        left: 10px;
+        width: 25px;
+        height: 15px;
+    }
+
+    .hamburger div {
+        width: 25px;
+        height: 2px;
+    }
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 550px) {
+    body {
+        background-image: url('../image/mb-3.png');
+    }
+    .content{
+        height: 530px;
+    }
+}

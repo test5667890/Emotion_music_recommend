@@ -1,0 +1,50 @@
+{% include "ad/header.html" %}  <!-- Assuming you have a header template -->
+
+<style>
+    /* Responsive table styles */
+    @media (max-width: 768px) {
+        .table-wrapper {
+            overflow-x: auto;
+            height: 380px;
+        }
+
+        table {
+            width: 100%;
+            table-layout: auto;
+        }
+
+        
+    }
+</style>
+
+<div class="content-wrapper" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    <h2>All Users</h2>
+
+  <div class="table-wrapper">
+    
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid #ccc; padding: 10px;">Full Name</th>
+                <th style="border: 1px solid #ccc; padding: 10px;">Username</th>
+                <th style="border: 1px solid #ccc; padding: 10px;">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 10px;">{{ user.fullname }}</td>
+                <td style="border: 1px solid #ccc; padding: 10px;">{{ user.username }}</td>
+                <td style="border: 1px solid #ccc; padding: 10px;">{{ user.email }}</td>
+            </tr>
+            {% endfor %}
+     
+
+        </tbody>
+    </table>
+</div>
+
+    
+</div>
+
+{% include "ad/footer.html" %}

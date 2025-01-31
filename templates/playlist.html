@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Playlist</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/playlist.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<!-- Sidebar Navigation -->
+<div class="sidebar" id="sidebar">
+    <ul>
+        <li><a href="{{ url_for('home') }}"><i class="fas fa-home icon-home"></i>&nbsp;&nbsp;Home</a></li>
+        <li><a href="{{ url_for('about') }}"><i class="fas fa-building icon-building"></i>&nbsp;&nbsp;About</a></li>
+        <li><a href="{{ url_for('songs') }}"><i class="fas fa-music icon-music"></i>&nbsp;&nbsp;Songs</a></li>
+        <li><a href="{{ url_for('setting') }}"><i class="fas fa-cog icon-cog"></i>&nbsp;&nbsp;Setting</a></li>
+        <li><a href="{{ url_for('feedback') }}"><i class="fas fa-comments icon-comments"></i>&nbsp;&nbsp;FeedBack</a></li>
+        <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt icon-sign-out-alt"></i>&nbsp;&nbsp;Logout</a></li>
+    </ul>
+</div>
+
+<!-- Hamburger Menu Icon -->
+<div class="hamburger" id="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+<!-- Main Content Area -->
+<div class="content" style="z-index: 1; position: relative; overflow: hidden;">
+
+    {% if emotion %}
+    <h1>Detected Emotion: {{ emotion }}</h1>
+    {% endif %}
+    <a href="/">Again Capture Emotion</a>
+    <h1><span>Suggested Songs</span></h1>
+
+    <div class="playlist-container">
+        {% if songs %}
+            {% for song in songs %}
+                <div class="song-item">
+                    <div class="i" style=" height: 111px; border-radius: 10px;overflow: hidden;">
+                        <img src="{{ url_for('static', filename='images/' + song['image']) }}" alt="Album Cover" class="album-cover">
+                    </div>
+                    <div class="song-info">
+                        <div class="info">
+                            <div class="song-title">{{ song['title'] }}</div>
+                            <div class="song-artist">{{ song['artist'] }}</div>
+                        </div>
+                        <button class="play-button" 
+                                onclick="playSong('{{ url_for('static', filename='songs/' + song['song']) }}', this)">
+                            <i class="fas fa-play"></i> Play
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No songs found for the emotion: {{ emotion }}.</p>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    let currentAudio = null;  // Track the current audio being played
+    let currentButton = null;  // Track the current button that is playing
+
+    function playSong(songUrl, button) {
+        // If the same button is clicked again
+        if (currentButton === button) {
+            if (currentAudio) {
+                currentAudio.pause();  // Pause the current audio
+                button.innerHTML = '<i class="fas fa-play"></i> Play';  // Reset button text to Play
+                currentAudio = null;  // Reset current audio
+                currentButton = null;  // Reset current button
+            }
+            return;  // Exit the function since we are toggling
+        }
+
+        // If a different button is clicked
+        if (currentAudio) {
+            currentAudio.pause();  // Pause the current audio
+            if (currentButton) {
+                currentButton.innerHTML = '<i class="fas fa-play"></i> Play';  // Reset the previous button text to Play
+            }
+        }
+
+        // Create a new audio object for the clicked song
+        currentAudio = new Audio(songUrl);
+        currentAudio.play();  // Play the selected song
+
+        // Update button to show pause icon
+        currentButton = button;
+        currentButton.innerHTML = '<i class="fas fa-pause"></i> Pause';
+
+        // Add an event listener to handle when the audio ends
+        currentAudio.onended = function() {
+            currentButton.innerHTML = '<i class="fas fa-play"></i> Play';  // Reset button text when audio ends
+            currentAudio = null;  // Reset current audio
+            currentButton = null;  // Reset current button
+        };
+    }
+
+    // Automatically play the first song when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        const firstSongButton = document.querySelector('.playlist-container .play-button');
+        if (firstSongButton) {
+            const firstSongUrl = firstSongButton.getAttribute('onclick').match(/playSong\('(.*?)'/)[1];
+            playSong(firstSongUrl, firstSongButton);
+        }
+    });
+
+    // JavaScript for Sidebar Toggle
+    const hamburger = document.getElementById('hamburger');
+    const sidebar = document.getElementById('sidebar');
+    let sidebarVisible = false;
+
+    hamburger.addEventListener('click', () => {
+        sidebarVisible = !sidebarVisible;
+        sidebar.classList.toggle('sidebar-active');
+        hamburger.classList.toggle('hamburger-active');
+    });
+
+    // Close sidebar when clicking outside of it
+    document.addEventListener('click', (event) => {
+        if (sidebarVisible && !sidebar.contains(event.target) && !hamburger.contains(event.target)) {
+            sidebarVisible = false;
+            sidebar.classList.remove('sidebar-active');
+            hamburger.classList.remove('hamburger-active');
+        }
+    });
+</script>
+
+</body>
+</html>

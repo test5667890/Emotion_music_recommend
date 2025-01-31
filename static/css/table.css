@@ -1,0 +1,140 @@
+/* General body styling */
+body {
+    display: block;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.25;
+    padding: 20px;
+    background-color: transparent;
+}
+
+/* Wrapping div container */
+.content-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Table wrapper for scrollable tbody */
+.table-wrapper {
+    height: 400px; /* Set a fixed height for the table */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+/* Base table styling */
+table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+}
+
+table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+}
+
+table thead {
+    background-color: transparent;
+    position: sticky; /* Make the header sticky */
+    top: 0; /* Stick to the top of the container */
+    z-index: 1;
+}
+
+table tr {
+    background-color: transparent;
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+
+table th,
+table td {
+    padding: .625em;
+    text-align: center;
+}
+
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    background-color: transparent;
+}
+
+/* Add zebra-striping for rows */
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+@media screen and (max-width: 768px) {
+    .table-wrapper {
+        overflow-x: auto;
+        height: 520px;
+    }
+
+    table {
+        border: 0;
+        width: 100%;
+        display: block; /* Make the table scrollable */
+        overflow-x: auto; /* Enable horizontal scrolling for mobile */
+    }
+
+    table caption {
+        font-size: 1.3em;
+    }
+
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .9em;
+        text-align: right;
+        padding: 10px;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #333;
+    }
+
+    table td:last-child {
+        border-bottom: 0;
+    }
+
+    table td button {
+        background-color: #ff66b2;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.8em;
+    }
+
+    table td button:hover {
+        background-color: #c94784;
+    }
+
+    .content-wrapper {
+        margin-top: 20px;
+    }
+}

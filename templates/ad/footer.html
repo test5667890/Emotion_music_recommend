@@ -1,0 +1,24 @@
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const sidebar = document.getElementById('sidebar');
+    let sidebarVisible = false;
+
+    hamburger.addEventListener('click', () => {
+        sidebarVisible = !sidebarVisible;
+        sidebar.classList.toggle('sidebar-active');
+        hamburger.classList.toggle('hamburger-active');
+    });
+
+    document.addEventListener('click', (event) => {
+        if (sidebarVisible && !sidebar.contains(event.target) && !hamburger.contains(event.target)) {
+            sidebarVisible = false;
+            sidebar.classList.remove('sidebar-active');
+            hamburger.classList.remove('hamburger-active');
+        }
+    });
+    
+</script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+{% include "ad/header.html" %}  <!-- Assuming you have a header template -->
+
+<style>
+    /* Responsive table styles */
+    @media (max-width: 768px) {
+        .table-wrapper {
+            overflow-x: auto;
+            height: 380px;
+        }
+
+        table {
+            width: 100%;
+            table-layout: auto;
+        }
+
+        
+    }
+</style>
+
+<div class="content-wrapper" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    <h2>All Feedback</h2>
+
+  <div class="table-wrapper">
+    
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                    <th>User</th>
+                    <th>Subject</th>
+                    <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tbody>
+                {% for feedback in feedbacks %}
+                <tr>
+                    <td>{{ feedback['id'] }}</td>
+                    <td>{{ feedback['fullname'] }}</td>
+                    <td>{{ feedback['subject'] }}</td>
+                    <td>{{ feedback['message'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+     
+
+        </tbody>
+    </table>
+</div>
+
+    
+</div>
+
+{% include "ad/footer.html" %}

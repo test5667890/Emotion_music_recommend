@@ -1,0 +1,29 @@
+{% include "ad/header.html" %}
+<div class="content-wrapper" style="max-width: 80%;display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    <div class="tab" style="width: 100%; text-align: center;">
+        <h2>Edit Song</h2>
+        <form method="POST" enctype="multipart/form-data" style="text-align: left;">
+            <div>
+                <label for="title">Title:</label>
+                <input type="text" name="title" id="title" value="{{ song['title'] }}" required>
+            </div>
+            <div>
+                <label for="artist">Artist:</label>
+                <input type="text" name="artist" id="artist" value="{{ song['artist'] }}" required>
+            </div>
+            <div>
+                <label for="mode">Emotion:</label>
+                <input type="text" name="mode" id="mode" value="{{ song['mode'] }}">
+            </div>
+            <div>
+                <label for="image">Image:</label>
+                <input type="file" name="image" id="image" accept="image/*">
+                <img src="{{ url_for('static', filename='images/' + song['image']) }}" alt="Current Image" width="100">
+            </div>
+            <div>
+                <button type="submit">Update Song</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% include "ad/footer.html" %}

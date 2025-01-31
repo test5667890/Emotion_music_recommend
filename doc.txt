@@ -1,0 +1,6 @@
+pip install moviepy==1.0.3
+pip install imageio[ffmpeg] numpy
+
+pip install setuptools
+
+pip install tensorflow

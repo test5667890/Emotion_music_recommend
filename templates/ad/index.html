@@ -1,0 +1,38 @@
+{% include "ad/header.html" %}
+
+<!-- Main Content Area home-container-->
+<div class="home-container" id="home-container" style="text-align: center; position: relative;">
+    <h1>Welcome to Admin Panel</h1>
+
+    <div class="bu" style="display: flex;">
+        <!-- Button for Opening Camera -->
+        <button class="button" style="margin-right: 5px;" onclick="window.location.href='{{ url_for('upload_song') }}'">
+            <i class="fas fa-plus icon-plus"></i>
+            Add Songs
+        </button>
+
+        <!-- Button for Importing Image -->
+        <button class="button" style="margin-left: 5px;" onclick="window.location.href='{{ url_for('all_songs') }}'"> 
+            <i class="fas fa-eye icon-file"></i>
+            View Songs
+        </button>
+    </div>
+    
+    <div class="bu" style="display: flex;">
+        <!-- Button for Opening Camera -->
+        <button class="button" style="margin-right: 5px;" onclick="window.location.href='{{ url_for('all_user') }}'">
+            <i class="fas fa-user icon-user"></i>
+            View Users
+        </button>
+
+        <!-- Button for Importing Image -->
+        <button class="button" style="margin-left: 5px;" onclick="window.location.href='{{ url_for('ad_setting') }}'">
+            <i class="fas fa-cog icon-cog"></i>
+            Edit Setting
+        </button>
+    </div>
+
+    
+</div>
+
+{% include "ad/footer.html" %}

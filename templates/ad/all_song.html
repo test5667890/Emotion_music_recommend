@@ -1,0 +1,103 @@
+{% include "ad/header.html" %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}">
+
+<!-- Centering the entire content container -->
+<div class="content-wrapper" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    <div class="tab" style="width: 100%; text-align: center;">
+        <h2>All Songs</h2>
+
+        <!-- Search Bar -->
+        <div style="margin-bottom: 20px;">
+            <input type="text" id="search-bar" onkeyup="searchSongs()" placeholder="Search for songs..." style="background-color: transparent;padding: 10px; width: 100%; max-width: 400px; border-radius: 5px; border: 1px solid #ccc;">
+        </div>
+
+        <div class="table-wrapper">
+            <table id="songs-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Artist</th>
+                        <th scope="col">Emotion</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for song in songs %}
+                    <tr>
+                        <td data-label="Image"><img src="{{ url_for('static', filename='images/' + song['image']) }}" alt="Album cover" width="50" height="50"></td>
+                        <td data-label="Title">{{ song['title'] }}</td>
+                        <td data-label="Artist">{{ song['artist'] }}</td>
+                        <td data-label="Emotion">{{ song['mode'] }}</td>
+                        <td data-label="Edit">
+                            <a href="{{ url_for('edit_song', song_id=song['id']) }}">
+                                <button style="color: #111;">Edit</button>
+                            </a>
+                        </td>
+                        <td data-label="Delete">
+                            <form action="{{ url_for('delete_song', song_id=song['id']) }}" method="POST" style="display: inline;">
+                                <button type="submit" style="color: #111; background: none; border: none; cursor: pointer;">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% include "ad/footer.html" %}
+
+<script>
+    function searchSongs() {
+        const input = document.getElementById('search-bar').value.toLowerCase();
+        const table = document.getElementById('songs-table');
+        const tr = table.getElementsByTagName('tr');
+
+        // Loop through all table rows and hide those that don't match the query
+        for (let i = 1; i < tr.length; i++) {
+            const tdTitle = tr[i].getElementsByTagName('td')[1]; // Title is in the 2nd column (index 1)
+            if (tdTitle) {
+                const textValue = tdTitle.textContent || tdTitle.innerText;
+                if (textValue.toLowerCase().indexOf(input) > -1) {
+                    tr[i].style.display = '';
+                } else {
+                    tr[i].style.display = 'none';
+                }
+            }
+        }
+    }
+</script>
+
+<style>
+    /* Responsive table styles */
+    @media (max-width: 768px) {
+        .table-wrapper {
+            overflow-x: auto;
+            height: 380px;
+        }
+
+        table {
+            width: 100%;
+            table-layout: auto;
+        }
+
+        th, td {
+            display: block;
+            text-align: left;
+        }
+
+        th {
+            position: absolute;
+            left: -9999px;
+        }
+
+        tr {
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            width: 280px;
+        }
+    }
+</style>

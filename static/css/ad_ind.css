@@ -1,0 +1,250 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../image/bg2.png'); /* Same background image as login.css */
+    background-size: cover; /* Makes the image cover the entire page */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    color: #000000; /* Black text */
+}
+
+/* Sidebar Hidden by Default */
+.sidebar {
+        position: fixed;
+        top: 0;
+        left: -250px;
+        width: 250px;
+        height: 100%;
+        background-color: rgba(181, 193, 228, 0.95); /* Glassy blue background */
+        color: #000000;
+        transition: left 0.3s ease;
+        padding-top: 60px;
+        box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.5);
+        z-index: 2;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    text-align: center;
+}
+
+.sidebar ul li a {
+    color: #030303;;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    color: #fff;
+}
+
+/* Hamburger Menu Icon */
+.hamburger {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 3;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+}
+
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    background-color: #000000;
+    transition: all 0.3s ease;
+}
+
+        
+/* Home Container */
+.home-container {
+    backdrop-filter: blur(10px) saturate(150%);
+    background: rgba(255, 255, 255, 0.1); /* Frosted glass effect */
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 100%;
+    z-index: 1; /* On top of animated background */
+    position: relative;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.home-container h1 {
+    color: #000000;; 
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.home-container p {
+    color: #000000;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+.button {
+    width: 64%;
+            padding: 9px;
+            margin-bottom: 20px;
+            background-color: #a692cb;
+            color: #0e0b16;
+            border: none;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+}
+
+.button:hover {
+    background-color: #c5bfdd; /* Lighter pink on hover */
+    box-shadow: 0px 5px 15px rgba(114, 103, 109, 0.144); /* Stronger glow on hover */
+}
+
+.button i {
+    font-size: 20px; /* Icon size */
+}
+
+.icon-camera {
+    color: #16213e; /* Electric blue icon color */
+}
+
+.icon-file {
+    color: #16213e; /* Electric blue icon color */
+}
+/* 
+
+        h1 {
+            color: #ff66b2;
+            font-size: 36px;
+        }
+*/
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        } 
+
+        /* Sidebar Active State */
+        .sidebar-active {
+            left: 0;
+        }
+
+        /* Change Hamburger to 'X' on Click */
+        .hamburger-active div:nth-child(1) {
+            transform: rotate(45deg);
+            transform-origin: top left;
+        }
+
+        .hamburger-active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-active div:nth-child(3) {
+            transform: rotate(-45deg);
+            transform-origin: top left;
+        }
+input{
+    width: 100%;
+    padding: 15px;
+    margin: 12px 0;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(16, 27, 60, 0.8); /* Dark, glassy blue */
+    color: #ffffff;
+    font-size: 16px;
+    box-sizing: border-box;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: border-color 0.3s ease;
+}
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .home-container {
+        padding: 10px;
+        width: 90%;
+    }
+
+    .home-container h1 {
+        font-size: 24px;
+    }
+
+    .bu{
+        flex-direction: column;
+    }
+
+    .button {
+        font-size: 16px;
+        padding: 12px;
+
+        width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    }
+
+    .button i {
+        font-size: 18px; /* Adjust icon size for smaller screens */
+    }
+
+            .hamburger {
+                top: 45px;
+                left: 10px;
+                width: 25px;
+                height: 15px;
+            }
+
+            .hamburger div {
+                width: 25px;
+                height: 2px;
+            }
+        }
+
+
+/* Responsive Adjustments */
+@media screen and (max-width: 550px) {
+    body {
+        background-image: url('../image/mb-2.png');
+    }
+
+    .home-container {
+       backdrop-filter: none;
+       background: transparent;
+       border-radius: 0;
+       padding: 40px;
+       box-shadow: 0 0 0 0;
+       max-width: 400px;
+       width: 100%;
+       z-index: 1;
+       position: relative;
+       box-sizing: border-box;
+       border: 0px solid rgba(255, 255, 255, 0.18);
+       }
+
+}

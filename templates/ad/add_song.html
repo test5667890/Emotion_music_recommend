@@ -1,0 +1,70 @@
+{% include "ad/header.html" %}
+
+<style>
+    .form-group input{
+        background-color: rgba(150, 153, 161, 0.329);
+    color: #111;
+    }
+
+    .form-group select {
+        width: 100%;
+    padding: 15px;
+    margin: 12px 0;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(150, 153, 161, 0.329);
+    color: #111;
+    font-size: 16px;
+    box-sizing: border-box;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: border-color 0.3s ease;
+}
+@media screen and (max-width: 768px) {
+    /* .cont{
+        margin-top: -50px;
+    } */
+    .button{
+        margin-top: 20px;
+    }
+}
+</style>
+
+<div class="cont" style="max-width: 80%;text-align: center;">
+    <h1>Upload a Song</h1>
+
+<form method="POST" enctype="multipart/form-data" style="text-align: left;">
+    <div class="form-group">
+        <input type="text" name="title" id="title" class="form-control" placeholder="Enter Song Title" required>
+    </div>
+
+    <div class="form-group">
+        <input type="text" name="artist" id="artist" class="form-control" placeholder="Enter Artist Name" required>
+    </div>
+
+    <div class="form-group">
+        <label for="image">Cover Image:</label>
+        <input type="file" name="image" id="image" class="form-control-file" placeholder="Enter Song Title" required>
+    </div>
+
+    <div class="form-group">
+        <label for="song">Upload Song MP3:</label>
+        <input type="file" name="song" id="song" class="form-control-file" required accept=".mp3,audio/mpeg">
+    </div>
+
+    <div class="form-group">
+        <label for="mode">Mode:</label>
+        <select name="mode" id="mode" class="form-control">
+            <option value="unknown">Default</option>
+            <option value="angry">Angry</option>
+            <option value="sad">Sad</option>
+            <option value="neutral">Neutral</option>
+            <option value="happy">Happy</option>
+        </select>
+    </div>
+
+    <button type="submit" class="button">Upload</button>
+</form>
+</div>
+
+{% include "ad/footer.html" %}
