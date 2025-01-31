@@ -2,9 +2,6 @@
 # from email.mime.multipart import MIMEMultipart
 # from email.mime.text import MIMEText
 
-# MY_EMAIL = "ar24son@gmail.com"
-# MY_PASSWORD = "eqmdbzdpbyhzntdx"
-
 # def send_welcome_email(receiver_email, fullname):
 #     smtp_server = 'smtp.gmail.com'
 #     smtp_port = 587
@@ -68,8 +65,8 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-MY_EMAIL = "ar24son@gmail.com"
-MY_PASSWORD = "eqmdbzdpbyhzntdx"
+MY_EMAIL = ""
+MY_PASSWORD = ""
 
 def send_email(receiver_email, subject, html_content):
     smtp_server = 'smtp.gmail.com'
